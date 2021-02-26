@@ -54,7 +54,7 @@
         <div class="page-header">
           <h2 class="text-center">Mars Hemispheres</h2>
         </div>
-        {% for hemisphere in mars.hemispheres %}
+        {% for hemisphere in mars.mars_hemispheres %}
         <div class="col-md-3">
           <div class="thumbnail">
             <img src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="...">

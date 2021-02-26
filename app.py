@@ -18,8 +18,8 @@ def home():
 def scrape():
     #run scrape function and update mongo database using upsert=true
     mars = mongo.db.mars
-    mars_data = scrape_mars.scrape_mars_function()
-    mars.update_many({}, mars_data, upsert=True)
+    mars_data = scrape.scrape()
+    mars.update({}, mars_data, upsert=True)
     #redirect to homepage
     return redirect('/', code=302)
 

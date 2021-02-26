@@ -6,6 +6,7 @@ import time
 from webdriver_manager.chrome import ChromeDriverManager
 import pymongo
 
+
 #Function to execute all scraping code and return one python dictionary
 def scrape_mars_function():
 
@@ -53,7 +54,7 @@ def scrape_mars_function():
     browser.visit(url_mars_facts)
 
     mars_facts = pd.read_html(url_mars_facts)
-    mars_facts
+    
     mars_facts_df = mars_facts[0]
 
     mars_facts_df.columns = ["Fact", "Value"]
@@ -61,7 +62,9 @@ def scrape_mars_function():
     #sets index to fact column 
     mars_facts_df.set_index("Fact", inplace=True)
 
-    mars_facts_df
+    
+    html_table = mars_facts_df.to_html()
+    scraped_data["html_table"] = html_table
 
     #save table to html
     mars_facts_df.to_html("mars_facts_data.html")
