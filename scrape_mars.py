@@ -7,7 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import pymongo
 
 #Function to execute all scraping code and return one python dictionary
-def scrape ():
+def scrape_mars_function():
 
     scraped_data={}
 
@@ -34,6 +34,7 @@ def scrape ():
     #Pragraph text contained in <div class="article_teaser_body"
     scraped_data["paragraph"] = article.find("div", class_ = "article_teaser_body").text
 
+    print("Checkpoint 1")
 
     #JPL space images
     url_spaceimage = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
@@ -44,7 +45,8 @@ def scrape ():
 
     # Find image url to the full size
     scraped_data["featured_image"] = img_soup.find("img", class_="BaseImage object-contain")["data-src"]
-        
+    
+    print("Checkpoint 2")
 
     #Visits the Mars Facts webpage
     url_mars_facts = "https://space-facts.com/mars/"
@@ -63,6 +65,8 @@ def scrape ():
 
     #save table to html
     mars_facts_df.to_html("mars_facts_data.html")
+
+    print("Checkpoint 3")
 
     #Mars Hemispheres
     hemispheres_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
@@ -100,12 +104,14 @@ def scrape ():
         print(title)
         print(hemisphere_url)
 
+    print("Checkpoint 4")
+    
     scraped_data["mars_hemispheres"] = mars_hemispheres
 
     print (scraped_data)
         
     return scraped_data
 
-scrape()
+scrape_mars_function()
 
 
