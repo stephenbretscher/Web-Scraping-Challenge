@@ -1,7 +1,6 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_pymongo import PyMongo
 import scrape_mars
-
 app = Flask(__name__)
 
 # Use flask_pymongo to set up connection
@@ -18,7 +17,7 @@ def home():
 def scrape():
     #run scrape function and update mongo database using upsert=true
     mars = mongo.db.mars
-    mars_data = scrape.scrape()
+    mars_data = scrape_mars.scrape()
     mars.update({}, mars_data, upsert=True)
     #redirect to homepage
     return redirect('/', code=302)

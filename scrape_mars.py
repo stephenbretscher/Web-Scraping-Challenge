@@ -8,7 +8,7 @@ import pymongo
 
 
 #Function to execute all scraping code and return one python dictionary
-def scrape_mars_function():
+def scrape():
 
     scraped_data={}
 
@@ -51,7 +51,6 @@ def scrape_mars_function():
 
     #Visits the Mars Facts webpage
     url_mars_facts = "https://space-facts.com/mars/"
-    browser.visit(url_mars_facts)
 
     mars_facts = pd.read_html(url_mars_facts)
     
@@ -62,11 +61,10 @@ def scrape_mars_function():
     #sets index to fact column 
     mars_facts_df.set_index("Fact", inplace=True)
 
-    
     html_table = mars_facts_df.to_html()
     scraped_data["html_table"] = html_table
 
-    #save table to html
+    #save table to seperate html file
     mars_facts_df.to_html("mars_facts_data.html")
 
     print("Checkpoint 3")
@@ -115,6 +113,6 @@ def scrape_mars_function():
         
     return scraped_data
 
-scrape_mars_function()
+scrape()
 
 
